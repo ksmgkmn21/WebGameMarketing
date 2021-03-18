@@ -1,0 +1,722 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="WebMarketingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Belongs_To">
+          <Key>
+            <PropertyRef Name="Relation_id" />
+          </Key>
+          <Property Name="Relation_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Belongs_id" Type="int" Nullable="false" />
+          <Property Name="Game_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Games">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Release_date" Type="int" Nullable="false" />
+          <Property Name="Genre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Purchase_count" Type="int" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Description" Type="text" Nullable="false" />
+          <Property Name="Vote" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Img_Path">
+          <Key>
+            <PropertyRef Name="Game_id" />
+          </Key>
+          <Property Name="Game_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Path" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Library">
+          <Key>
+            <PropertyRef Name="Users_id" />
+            <PropertyRef Name="Game_id" />
+          </Key>
+          <Property Name="Relation_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Users_id" Type="int" Nullable="false" />
+          <Property Name="Game_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Operates_On">
+          <Key>
+            <PropertyRef Name="Relation_id" />
+          </Key>
+          <Property Name="Relation_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Platform_id" Type="int" Nullable="false" />
+          <Property Name="Game_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Platforms">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Pname" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Publisher">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Publisher_Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Review">
+          <Key>
+            <PropertyRef Name="Users_id" />
+            <PropertyRef Name="Game_id" />
+          </Key>
+          <Property Name="Users_id" Type="int" Nullable="false" />
+          <Property Name="Game_id" Type="int" Nullable="false" />
+          <Property Name="Vote" Type="int" Nullable="false" />
+          <Property Name="Comment" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Scart">
+          <Key>
+            <PropertyRef Name="Users_id" />
+            <PropertyRef Name="Game_id" />
+          </Key>
+          <Property Name="Relation_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Users_id" Type="int" Nullable="false" />
+          <Property Name="Game_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Lname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="E_mail" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Birthdate" Type="date" Nullable="false" />
+          <Property Name="credit_card_number" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Belongs_id">
+          <End Role="Publisher" Type="Self.Publisher" Multiplicity="1" />
+          <End Role="Belongs_To" Type="Self.Belongs_To" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publisher">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Belongs_To">
+              <PropertyRef Name="Belongs_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Game_id">
+          <End Role="Games" Type="Self.Games" Multiplicity="1" />
+          <End Role="Belongs_To" Type="Self.Belongs_To" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Games">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Belongs_To">
+              <PropertyRef Name="Game_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Game_Library">
+          <End Role="Games" Type="Self.Games" Multiplicity="1" />
+          <End Role="Library" Type="Self.Library" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Games">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Library">
+              <PropertyRef Name="Game_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Game_Review">
+          <End Role="Games" Type="Self.Games" Multiplicity="1" />
+          <End Role="Review" Type="Self.Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Games">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Review">
+              <PropertyRef Name="Game_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Game_Scart">
+          <End Role="Games" Type="Self.Games" Multiplicity="1" />
+          <End Role="Scart" Type="Self.Scart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Games">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Scart">
+              <PropertyRef Name="Game_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Game_Url">
+          <End Role="Games" Type="Self.Games" Multiplicity="1" />
+          <End Role="Img_Path" Type="Self.Img_Path" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Games">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Img_Path">
+              <PropertyRef Name="Game_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Games_id">
+          <End Role="Games" Type="Self.Games" Multiplicity="1" />
+          <End Role="Operates_On" Type="Self.Operates_On" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Games">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Operates_On">
+              <PropertyRef Name="Game_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Platform_id">
+          <End Role="Platforms" Type="Self.Platforms" Multiplicity="1" />
+          <End Role="Operates_On" Type="Self.Operates_On" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Platforms">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Operates_On">
+              <PropertyRef Name="Platform_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Library">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Library" Type="Self.Library" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Library">
+              <PropertyRef Name="Users_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Review">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Review" Type="Self.Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Review">
+              <PropertyRef Name="Users_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Scart">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Scart" Type="Self.Scart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Scart">
+              <PropertyRef Name="Users_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WebMarketingModelStoreContainer">
+          <EntitySet Name="Belongs_To" EntityType="Self.Belongs_To" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Games" EntityType="Self.Games" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Img_Path" EntityType="Self.Img_Path" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Library" EntityType="Self.Library" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Operates_On" EntityType="Self.Operates_On" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Platforms" EntityType="Self.Platforms" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Publisher" EntityType="Self.Publisher" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Review" EntityType="Self.Review" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Scart" EntityType="Self.Scart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Belongs_id" Association="Self.FK_Belongs_id">
+            <End Role="Publisher" EntitySet="Publisher" />
+            <End Role="Belongs_To" EntitySet="Belongs_To" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Game_id" Association="Self.FK_Game_id">
+            <End Role="Games" EntitySet="Games" />
+            <End Role="Belongs_To" EntitySet="Belongs_To" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Game_Library" Association="Self.FK_Game_Library">
+            <End Role="Games" EntitySet="Games" />
+            <End Role="Library" EntitySet="Library" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Game_Review" Association="Self.FK_Game_Review">
+            <End Role="Games" EntitySet="Games" />
+            <End Role="Review" EntitySet="Review" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Game_Scart" Association="Self.FK_Game_Scart">
+            <End Role="Games" EntitySet="Games" />
+            <End Role="Scart" EntitySet="Scart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Game_Url" Association="Self.FK_Game_Url">
+            <End Role="Games" EntitySet="Games" />
+            <End Role="Img_Path" EntitySet="Img_Path" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Games_id" Association="Self.FK_Games_id">
+            <End Role="Games" EntitySet="Games" />
+            <End Role="Operates_On" EntitySet="Operates_On" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Platform_id" Association="Self.FK_Platform_id">
+            <End Role="Platforms" EntitySet="Platforms" />
+            <End Role="Operates_On" EntitySet="Operates_On" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Library" Association="Self.FK_User_Library">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Library" EntitySet="Library" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Review" Association="Self.FK_User_Review">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Review" EntitySet="Review" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Scart" Association="Self.FK_User_Scart">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Scart" EntitySet="Scart" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WebMarketingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="WebMarketingEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Belongs_To" EntityType="WebMarketingModel.Belongs_To" />
+          <EntitySet Name="Games" EntityType="WebMarketingModel.Games" />
+          <EntitySet Name="Operates_On" EntityType="WebMarketingModel.Operates_On" />
+          <EntitySet Name="Platforms" EntityType="WebMarketingModel.Platforms" />
+          <EntitySet Name="Publisher" EntityType="WebMarketingModel.Publisher" />
+          <AssociationSet Name="FK_Belongs_id" Association="WebMarketingModel.FK_Belongs_id">
+            <End Role="Publisher" EntitySet="Publisher" />
+            <End Role="Belongs_To" EntitySet="Belongs_To" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Game_id" Association="WebMarketingModel.FK_Game_id">
+            <End Role="Games" EntitySet="Games" />
+            <End Role="Belongs_To" EntitySet="Belongs_To" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Games_id" Association="WebMarketingModel.FK_Games_id">
+            <End Role="Games" EntitySet="Games" />
+            <End Role="Operates_On" EntitySet="Operates_On" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Platform_id" Association="WebMarketingModel.FK_Platform_id">
+            <End Role="Platforms" EntitySet="Platforms" />
+            <End Role="Operates_On" EntitySet="Operates_On" />
+          </AssociationSet>
+          <EntitySet Name="Img_Path" EntityType="WebMarketingModel.Img_Path" />
+          <AssociationSet Name="FK_Game_Url" Association="WebMarketingModel.FK_Game_Url">
+            <End Role="Games" EntitySet="Games" />
+            <End Role="Img_Path" EntitySet="Img_Path" />
+          </AssociationSet>
+          <EntitySet Name="Library" EntityType="WebMarketingModel.Library" />
+          <EntitySet Name="Review" EntityType="WebMarketingModel.Review" />
+          <EntitySet Name="Scart" EntityType="WebMarketingModel.Scart" />
+          <EntitySet Name="Users" EntityType="WebMarketingModel.Users" />
+          <AssociationSet Name="FK_Game_Library" Association="WebMarketingModel.FK_Game_Library">
+            <End Role="Games" EntitySet="Games" />
+            <End Role="Library" EntitySet="Library" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Game_Review" Association="WebMarketingModel.FK_Game_Review">
+            <End Role="Games" EntitySet="Games" />
+            <End Role="Review" EntitySet="Review" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Game_Scart" Association="WebMarketingModel.FK_Game_Scart">
+            <End Role="Games" EntitySet="Games" />
+            <End Role="Scart" EntitySet="Scart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Library" Association="WebMarketingModel.FK_User_Library">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Library" EntitySet="Library" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Review" Association="WebMarketingModel.FK_User_Review">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Review" EntitySet="Review" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Scart" Association="WebMarketingModel.FK_User_Scart">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Scart" EntitySet="Scart" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="Belongs_To">
+          <Key>
+            <PropertyRef Name="Relation_id" />
+          </Key>
+          <Property Name="Relation_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Belongs_id" Type="Int32" Nullable="false" />
+          <Property Name="Game_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Publisher" Relationship="WebMarketingModel.FK_Belongs_id" FromRole="Belongs_To" ToRole="Publisher" />
+          <NavigationProperty Name="Games" Relationship="WebMarketingModel.FK_Game_id" FromRole="Belongs_To" ToRole="Games" />
+        </EntityType>
+        <EntityType Name="Games">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Release_date" Type="Int32" Nullable="false" />
+          <Property Name="Genre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Purchase_count" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Vote" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <NavigationProperty Name="Belongs_To" Relationship="WebMarketingModel.FK_Game_id" FromRole="Games" ToRole="Belongs_To" />
+          <NavigationProperty Name="Operates_On" Relationship="WebMarketingModel.FK_Games_id" FromRole="Games" ToRole="Operates_On" />
+          <NavigationProperty Name="Img_Path" Relationship="WebMarketingModel.FK_Game_Url" FromRole="Games" ToRole="Img_Path" />
+          <NavigationProperty Name="Library" Relationship="WebMarketingModel.FK_Game_Library" FromRole="Games" ToRole="Library" />
+          <NavigationProperty Name="Review" Relationship="WebMarketingModel.FK_Game_Review" FromRole="Games" ToRole="Review" />
+          <NavigationProperty Name="Scart" Relationship="WebMarketingModel.FK_Game_Scart" FromRole="Games" ToRole="Scart" />
+        </EntityType>
+        <EntityType Name="Operates_On">
+          <Key>
+            <PropertyRef Name="Relation_id" />
+          </Key>
+          <Property Name="Relation_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Platform_id" Type="Int32" Nullable="false" />
+          <Property Name="Game_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Games" Relationship="WebMarketingModel.FK_Games_id" FromRole="Operates_On" ToRole="Games" />
+          <NavigationProperty Name="Platforms" Relationship="WebMarketingModel.FK_Platform_id" FromRole="Operates_On" ToRole="Platforms" />
+        </EntityType>
+        <EntityType Name="Platforms">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Pname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Operates_On" Relationship="WebMarketingModel.FK_Platform_id" FromRole="Platforms" ToRole="Operates_On" />
+        </EntityType>
+        <EntityType Name="Publisher">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Publisher_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Belongs_To" Relationship="WebMarketingModel.FK_Belongs_id" FromRole="Publisher" ToRole="Belongs_To" />
+        </EntityType>
+        <Association Name="FK_Belongs_id">
+          <End Type="WebMarketingModel.Publisher" Role="Publisher" Multiplicity="1" />
+          <End Type="WebMarketingModel.Belongs_To" Role="Belongs_To" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publisher">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Belongs_To">
+              <PropertyRef Name="Belongs_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Game_id">
+          <End Type="WebMarketingModel.Games" Role="Games" Multiplicity="1" />
+          <End Type="WebMarketingModel.Belongs_To" Role="Belongs_To" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Games">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Belongs_To">
+              <PropertyRef Name="Game_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Games_id">
+          <End Type="WebMarketingModel.Games" Role="Games" Multiplicity="1" />
+          <End Type="WebMarketingModel.Operates_On" Role="Operates_On" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Games">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Operates_On">
+              <PropertyRef Name="Game_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Platform_id">
+          <End Type="WebMarketingModel.Platforms" Role="Platforms" Multiplicity="1" />
+          <End Type="WebMarketingModel.Operates_On" Role="Operates_On" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Platforms">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Operates_On">
+              <PropertyRef Name="Platform_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Img_Path">
+          <Key>
+            <PropertyRef Name="Game_id" />
+          </Key>
+          <Property Name="Game_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Path" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Games" Relationship="WebMarketingModel.FK_Game_Url" FromRole="Img_Path" ToRole="Games" />
+        </EntityType>
+        <Association Name="FK_Game_Url">
+          <End Type="WebMarketingModel.Games" Role="Games" Multiplicity="1" />
+          <End Type="WebMarketingModel.Img_Path" Role="Img_Path" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Games">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Img_Path">
+              <PropertyRef Name="Game_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Library">
+          <Key>
+            <PropertyRef Name="Users_id" />
+            <PropertyRef Name="Game_id" />
+          </Key>
+          <Property Name="Relation_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Users_id" Type="Int32" Nullable="false" />
+          <Property Name="Game_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Games" Relationship="WebMarketingModel.FK_Game_Library" FromRole="Library" ToRole="Games" />
+          <NavigationProperty Name="Users" Relationship="WebMarketingModel.FK_User_Library" FromRole="Library" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Review">
+          <Key>
+            <PropertyRef Name="Users_id" />
+            <PropertyRef Name="Game_id" />
+          </Key>
+          <Property Name="Users_id" Type="Int32" Nullable="false" />
+          <Property Name="Game_id" Type="Int32" Nullable="false" />
+          <Property Name="Vote" Type="Int32" Nullable="false" />
+          <Property Name="Comment" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Games" Relationship="WebMarketingModel.FK_Game_Review" FromRole="Review" ToRole="Games" />
+          <NavigationProperty Name="Users" Relationship="WebMarketingModel.FK_User_Review" FromRole="Review" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Scart">
+          <Key>
+            <PropertyRef Name="Users_id" />
+            <PropertyRef Name="Game_id" />
+          </Key>
+          <Property Name="Relation_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Users_id" Type="Int32" Nullable="false" />
+          <Property Name="Game_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Games" Relationship="WebMarketingModel.FK_Game_Scart" FromRole="Scart" ToRole="Games" />
+          <NavigationProperty Name="Users" Relationship="WebMarketingModel.FK_User_Scart" FromRole="Scart" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Lname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="E_mail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Birthdate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="credit_card_number" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Library" Relationship="WebMarketingModel.FK_User_Library" FromRole="Users" ToRole="Library" />
+          <NavigationProperty Name="Review" Relationship="WebMarketingModel.FK_User_Review" FromRole="Users" ToRole="Review" />
+          <NavigationProperty Name="Scart" Relationship="WebMarketingModel.FK_User_Scart" FromRole="Users" ToRole="Scart" />
+        </EntityType>
+        <Association Name="FK_Game_Library">
+          <End Type="WebMarketingModel.Games" Role="Games" Multiplicity="1" />
+          <End Type="WebMarketingModel.Library" Role="Library" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Games">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Library">
+              <PropertyRef Name="Game_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Game_Review">
+          <End Type="WebMarketingModel.Games" Role="Games" Multiplicity="1" />
+          <End Type="WebMarketingModel.Review" Role="Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Games">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Review">
+              <PropertyRef Name="Game_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Game_Scart">
+          <End Type="WebMarketingModel.Games" Role="Games" Multiplicity="1" />
+          <End Type="WebMarketingModel.Scart" Role="Scart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Games">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Scart">
+              <PropertyRef Name="Game_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Library">
+          <End Type="WebMarketingModel.Users" Role="Users" Multiplicity="1" />
+          <End Type="WebMarketingModel.Library" Role="Library" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Library">
+              <PropertyRef Name="Users_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Review">
+          <End Type="WebMarketingModel.Users" Role="Users" Multiplicity="1" />
+          <End Type="WebMarketingModel.Review" Role="Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Review">
+              <PropertyRef Name="Users_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Scart">
+          <End Type="WebMarketingModel.Users" Role="Users" Multiplicity="1" />
+          <End Type="WebMarketingModel.Scart" Role="Scart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Scart">
+              <PropertyRef Name="Users_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WebMarketingModelStoreContainer" CdmEntityContainer="WebMarketingEntities">
+          <EntitySetMapping Name="Belongs_To">
+            <EntityTypeMapping TypeName="WebMarketingModel.Belongs_To">
+              <MappingFragment StoreEntitySet="Belongs_To">
+                <ScalarProperty Name="Game_id" ColumnName="Game_id" />
+                <ScalarProperty Name="Belongs_id" ColumnName="Belongs_id" />
+                <ScalarProperty Name="Relation_id" ColumnName="Relation_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Games">
+            <EntityTypeMapping TypeName="WebMarketingModel.Games">
+              <MappingFragment StoreEntitySet="Games">
+                <ScalarProperty Name="Vote" ColumnName="Vote" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Purchase_count" ColumnName="Purchase_count" />
+                <ScalarProperty Name="Genre" ColumnName="Genre" />
+                <ScalarProperty Name="Release_date" ColumnName="Release_date" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Operates_On">
+            <EntityTypeMapping TypeName="WebMarketingModel.Operates_On">
+              <MappingFragment StoreEntitySet="Operates_On">
+                <ScalarProperty Name="Game_id" ColumnName="Game_id" />
+                <ScalarProperty Name="Platform_id" ColumnName="Platform_id" />
+                <ScalarProperty Name="Relation_id" ColumnName="Relation_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Platforms">
+            <EntityTypeMapping TypeName="WebMarketingModel.Platforms">
+              <MappingFragment StoreEntitySet="Platforms">
+                <ScalarProperty Name="Pname" ColumnName="Pname" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Publisher">
+            <EntityTypeMapping TypeName="WebMarketingModel.Publisher">
+              <MappingFragment StoreEntitySet="Publisher">
+                <ScalarProperty Name="Publisher_Name" ColumnName="Publisher_Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Img_Path">
+            <EntityTypeMapping TypeName="WebMarketingModel.Img_Path">
+              <MappingFragment StoreEntitySet="Img_Path">
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="Game_id" ColumnName="Game_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Library">
+            <EntityTypeMapping TypeName="WebMarketingModel.Library">
+              <MappingFragment StoreEntitySet="Library">
+                <ScalarProperty Name="Game_id" ColumnName="Game_id" />
+                <ScalarProperty Name="Users_id" ColumnName="Users_id" />
+                <ScalarProperty Name="Relation_id" ColumnName="Relation_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Review">
+            <EntityTypeMapping TypeName="WebMarketingModel.Review">
+              <MappingFragment StoreEntitySet="Review">
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Vote" ColumnName="Vote" />
+                <ScalarProperty Name="Game_id" ColumnName="Game_id" />
+                <ScalarProperty Name="Users_id" ColumnName="Users_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Scart">
+            <EntityTypeMapping TypeName="WebMarketingModel.Scart">
+              <MappingFragment StoreEntitySet="Scart">
+                <ScalarProperty Name="Game_id" ColumnName="Game_id" />
+                <ScalarProperty Name="Users_id" ColumnName="Users_id" />
+                <ScalarProperty Name="Relation_id" ColumnName="Relation_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="WebMarketingModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="credit_card_number" ColumnName="credit_card_number" />
+                <ScalarProperty Name="Birthdate" ColumnName="Birthdate" />
+                <ScalarProperty Name="E_mail" ColumnName="E_mail" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Lname" ColumnName="Lname" />
+                <ScalarProperty Name="Fname" ColumnName="Fname" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

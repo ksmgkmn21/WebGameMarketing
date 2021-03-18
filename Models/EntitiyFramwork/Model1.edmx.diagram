@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1df8566a84f148e4b5a84c37b29d7a48" Name="Diagram1">
+        <EntityTypeShape EntityType="WebMarketingModel.Belongs_To" Width="1.5" PointX="4.125" PointY="11.625" />
+        <EntityTypeShape EntityType="WebMarketingModel.Games" Width="1.5" PointX="0.5" PointY="7.75" />
+        <EntityTypeShape EntityType="WebMarketingModel.Operates_On" Width="1.5" PointX="3" PointY="5.5" />
+        <EntityTypeShape EntityType="WebMarketingModel.Platforms" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="WebMarketingModel.Publisher" Width="1.5" PointX="0.75" PointY="12.75" />
+        <AssociationConnector Association="WebMarketingModel.FK_Belongs_id" />
+        <AssociationConnector Association="WebMarketingModel.FK_Game_id" />
+        <AssociationConnector Association="WebMarketingModel.FK_Games_id" />
+        <AssociationConnector Association="WebMarketingModel.FK_Platform_id" />
+        <EntityTypeShape EntityType="WebMarketingModel.Img_Path" Width="1.5" PointX="2.75" PointY="15.75" />
+        <AssociationConnector Association="WebMarketingModel.FK_Game_Url" />
+        <EntityTypeShape EntityType="WebMarketingModel.Library" Width="1.5" PointX="7.625" PointY="9.375" />
+        <EntityTypeShape EntityType="WebMarketingModel.Review" Width="1.5" PointX="7.625" PointY="6.375" />
+        <EntityTypeShape EntityType="WebMarketingModel.Scart" Width="1.5" PointX="7.625" PointY="3.375" />
+        <EntityTypeShape EntityType="WebMarketingModel.Users" Width="1.5" PointX="5.375" PointY="3.375" />
+        <AssociationConnector Association="WebMarketingModel.FK_Game_Library" />
+        <AssociationConnector Association="WebMarketingModel.FK_Game_Review" />
+        <AssociationConnector Association="WebMarketingModel.FK_Game_Scart" />
+        <AssociationConnector Association="WebMarketingModel.FK_User_Library" />
+        <AssociationConnector Association="WebMarketingModel.FK_User_Review" />
+        <AssociationConnector Association="WebMarketingModel.FK_User_Scart" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
