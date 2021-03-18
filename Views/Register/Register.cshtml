@@ -1,0 +1,125 @@
+﻿@using WebGameMarketing.Models.EntitiyFramwork
+@model List<Users>
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+
+
+<html lang="en">
+<body>
+    <div class="nk-main">
+
+        <!-- START: Breadcrumbs -->
+        <div class="nk-gap-1"></div>
+        <div class="container">
+            <ul class="nk-breadcrumbs">
+
+
+                <li><a href="index.html">Home</a></li>
+
+                <li><span class="fa fa-angle-right"></span></li>
+
+                <li><span>Register</span></li>
+
+            </ul>
+        </div>
+        <div class="nk-gap-1"></div>
+        <!-- END: Breadcrumbs -->
+
+
+
+
+        <div class="container">
+
+            <div class="nk-store nk-store-checkout">
+                <h3 class="nk-decorated-h-2"><span><span class="text-main-1">Become</span> a Member</span></h3>
+
+                <!-- START: Billing Details -->
+                <div class="nk-gap"></div>
+                @ViewBag.Mesaj2
+                @using (Html.BeginForm("Save", "Register", FormMethod.Post))
+                {
+                    
+                    @Html.AntiForgeryToken()
+                    <div class="row vertical-gap">
+                        <div class="col-lg-6">
+                            <div class="row vertical-gap">
+                                <div class="col-sm-6">
+                                    <label for="name">Name <span class="text-main-1">*</span>:</label>
+                                    <input type="text" class="form-control required" name="Fname" id="Fname">
+
+                                    <label for="name">Name <span class="text-main-1">*</span>:</label>
+                                    <input type="text" class="form-control required" name="Lname" id="Lname">
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="uname">Username <span class="text-main-1">*</span>:</label>
+                                    <input type="text" class="form-control required" name="UserName" id="UserName">
+                                </div>
+                            </div>
+
+                            <div class="nk-gap-1"></div>
+                            <label for="bdate">Birthdate:</label>
+                            <input type="text" class="form-control" name="Birthdate" id="Birthdate">
+
+                            <div class="nk-gap-1"></div>
+                            <div class="row vertical-gap">
+                                <div class="col-sm-6">
+                                    <label for="pswd">Password <span class="text-main-1">*</span>:</label>
+                                    <input type="text" class="form-control required" name="Password" id="Password">
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="pswda">Password Confirmation <span class="text-main-1">*</span>:</label>
+                                    <input type="text" class="form-control required" name="pswda" id="pswda">
+                                </div>
+                            </div>
+
+                            <div class="nk-gap-1"></div>
+
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="email">E-Mail <span class="text-main-1">*</span>:</label>
+                            <input type="text" class="form-control required" name="E_mail" id="E_mail">
+
+                            <div class="nk-gap-1"> </div>
+                            <label for="city">Phone <span class="text-main-1">*</span>:</label>
+                            <input type="text" class="form-control required" name="Phone" id="Phone">
+
+                            <div class="nk-gap-1"></div>
+                            <div class="row vertical-gap">
+                                <div class="nk-gap-1"></div>
+                                <div class="nk-gap-1"></div>
+                                <div class="nk-gap-1"></div>
+                                <div class="col-sm-6">
+                                    <label for="state">Credit Card Number <span class="text-main-1">*</span>:</label>
+                                    <input type="text" class="form-control required" name="credit_card_number" id="credit_card_number">
+                                </div>
+
+                            </div>
+
+                            <div class="nk-gap-1"></div>
+
+                        </div>
+                    </div>
+                    <input type="submit" value="Add" class="btn btn-default"> <br> <br>
+                }
+
+              
+
+                <div class="nk-gap-2"></div>
+               
+            </div>
+        </div>
+        <div class="nk-gap-2"></div>
+
+
+    </div>
+
+
+
+</body>
+</html>
+
+
+

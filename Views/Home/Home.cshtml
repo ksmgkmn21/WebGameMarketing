@@ -1,0 +1,163 @@
+﻿@using WebGameMarketing.Models.EntitiyFramwork
+@model Tuple<List<Games>, List<Games>, List<Games>>
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row vertical-gap">
+    <div class="nk-gap-2"></div>
+    <div class="nk-gap-2"></div>
+    <div class="nk-gap-2"></div>
+    <div class="container">
+
+        <div class="nk-blog-fullwidth">
+
+            <!-- START: Post -->
+            <div class="nk-blog-post">
+                <a class="nk-post-img">
+                    <img src="~/Content/img/homPage1.jpeg" alt="Witch Hunt has a new update!">
+                    <span class="nk-post-comments-count">4</span>
+                </a>
+                <div class="nk-gap-2"></div>
+                <div class="row vertical-gap">
+                    <div class="col-md-8 col-lg-9">
+                        <h2 class="nk-post-title h4"><a>Witch Hunt has a new update!</a></h2>
+                        <div class="nk-gap"></div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- END: Post -->
+            <!-- START: Post -->
+            <div class="nk-blog-post">
+                <a class="nk-post-img">
+                    <img src="~/Content/img/homPage2.jpeg" alt="Check out the featured DLC content...">
+                    <span class="nk-post-comments-count">4</span>
+                </a>
+                <div class="nk-gap-2"></div>
+                <div class="row vertical-gap">
+                    <div class="col-md-8 col-lg-9">
+                        <h2 class="nk-post-title h4"><a>Check out the featured DLC content...</a></h2>
+                        <div class="nk-gap"></div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="nk-blog-post">
+                <a class="nk-post-img">
+                    <img src="~/Content/img/homPage3.jpeg" alt="A new map is now on! Try it now.">
+                    <span class="nk-post-comments-count">4</span>
+                </a>
+                <div class="nk-gap-2"></div>
+                <div class="row vertical-gap">
+                    <div class="col-md-8 col-lg-9">
+                        <h2 class="nk-post-title h4"><a>A new map is now on! Try it now.</a></h2>
+                        <div class="nk-gap"></div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="nk-blog-post">
+                <a class="nk-post-img">
+                    <img src="~/Content/img/homPage4.jpeg" alt="New announcement! Check out the newest playlist...">
+                    <span class="nk-post-comments-count">4</span>
+                </a>
+                <div class="nk-gap-2"></div>
+                <div class="row vertical-gap">
+                    <div class="col-md-8 col-lg-9">
+                        <h2 class="nk-post-title h4"><a>New announcement! Check out the newest playlist...</a></h2>
+                        <div class="nk-gap"></div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+        <!-- END: Posts FullWidth -->
+    </div>
+    <!-- END: Tabbed News -->
+    <!-- START: Best Selling -->
+    <div class="nk-gap-3"></div>
+    <h3 class="nk-decorated-h-2"><span><span class="text-main-1">Best</span> Selling</span></h3>
+    <div class="nk-gap"></div>
+    <div class="row vertical-gap">
+
+        @foreach (Games item in Model.Item1.Take(6))
+        {
+
+            string temp = "~/Content/img/" + item.ID + ".jpg";
+            string imagePath = Url.Content(temp);
+
+            temp = "/Store/AddCart/" + item.ID;
+            string hrefPath = Url.Content(temp);
+
+            temp = "/Store/StoreProduct/" + item.ID;
+            string hrefPath2 = Url.Content(temp);
+            <div class="col-md-6">
+                <div class="nk-product-cat">
+                    <a class="nk-product-image" href="@hrefPath2">
+                        <img style="height:150px;max-width:200px;width: expression(this.width > 500 ? 500: true);" id="img_DocPreview" src="@imagePath" />
+                    </a>
+                    <div class="nk-product-cont">
+                        <h3 class="nk-product-title h5"><a href="@hrefPath2">@item.Name</a></h3>
+                        <div class="nk-gap-1"></div>
+                        <div class="nk-product-rating"> <i class="fas fa-star fa-spin fa-1x"></i>  <strong>@item.Vote</strong></div>
+                        <div class="nk-gap-1"></div>
+                        <div class="nk-product-price">@item.Price ₺</div>
+                        <div class="nk-gap-1"></div>
+                        <a href="@hrefPath" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+    <!-- END: Best Selling -->
+    <!-- START: Most Popular -->
+    <div class="nk-gap-3"></div>
+    <h3 class="nk-decorated-h-2"><span><span class="text-main-1">Most</span> Popular</span></h3>
+    <div class="nk-gap"></div>
+    <div class="row vertical-gap">
+
+        @foreach (Games item in Model.Item2.Take(6))
+        {
+
+            string temp = "~/Content/img/" + item.ID + ".jpg";
+            string imagePath = Url.Content(temp);
+
+            temp = "/Store/AddCart/" + item.ID;
+            string hrefPath = Url.Content(temp);
+
+            temp = "/Store/StoreProduct/" + item.ID;
+            string hrefPath2 = Url.Content(temp);
+            <div class="col-md-6">
+                <div class="nk-product-cat">
+                    <a class="nk-product-image" href="@hrefPath2">
+                        <img style="height:150px;max-width:200px;width: expression(this.width > 500 ? 500: true);" id="img_DocPreview" src="@imagePath" />
+                    </a>
+                    <div class="nk-product-cont">
+                        <h3 class="nk-product-title h5"><a href="@hrefPath2">@item.Name</a></h3>
+                        <div class="nk-gap-1"></div>
+                        <div class="nk-product-rating"> <i class="fas fa-star fa-spin fa-1x"></i>  <strong>@item.Vote</strong></div>
+                        <div class="nk-gap-1"></div>
+                        <div class="nk-product-price">@item.Price ₺</div>
+                        <div class="nk-gap-1"></div>
+                        <a href="@hrefPath" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+        }
+
+
+
+
+    </div>
+    <!-- END: Most Popular -->
+</div>
+   
+</div>
+

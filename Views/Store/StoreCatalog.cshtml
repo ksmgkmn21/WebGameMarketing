@@ -1,0 +1,141 @@
+﻿@using WebGameMarketing.Models.EntitiyFramwork
+@model List<Games>
+@{
+    ViewBag.Title = "StoreCatalog";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+
+<html lang="en">
+
+<body>
+
+    <div class="nk-main">
+
+        <!-- START: Breadcrumbs -->
+        <div class="nk-gap-1"></div>
+        <div class="container">
+            <ul class="nk-breadcrumbs">
+
+                <li><a href="/Home/Home">Home</a></li>
+
+
+                <li><span class="fa fa-angle-right"></span></li>
+
+                <li><a href="store.html">Store</a></li>
+
+
+                <li><span class="fa fa-angle-right"></span></li>
+
+                <li><span>Catalog</span></li>
+
+            </ul>
+        </div>
+        <div class="nk-gap-1"></div>
+        <!-- END: Breadcrumbs -->
+
+
+
+
+        <div class="container">
+
+            <!-- START: Products Filter -->
+            <div class="nk-gap-2"></div>
+            <div class="row vertical-gap">
+                <div class="col-lg-8">
+                    <div class="row vertical-gap">
+                        <div class="col-md-4">
+                            <select id="testSelect" name="testSelect" class="form-control" onchange="location = this.value;">
+                                <option value="" disabled selected>Select Platform</option>
+                                <option value="/Store/StoreCatalog/">...</option>
+                                <option value="/Store/StoreCatalog/Sports">Sports</option>
+                                <option value="/Store/StoreCatalog/Fighting">Fighting</option>
+                                <option value="/Store/StoreCatalog/Racing">Racing</option>
+                                <option value="/Store/StoreCatalog/Action">Action</option>
+                                <option value="/Store/StoreCatalog/Puzzle">Puzzle</option>
+                                <option value="/Store/StoreCatalog/Simulation">Simulation</option>
+                                <option value="/Store/StoreCatalog/Role-Playing">Role-Playing</option>
+                                <option value="/Store/StoreCatalog/Platform">Platform</option>
+                                <option value="/Store/StoreCatalog/Misc">Misc</option>
+                                <option value="/Store/StoreCatalog/Shooter">Shooter</option>
+                            </select>
+                        </div>
+                        
+                    </div>
+                </div>
+                @using (Html.BeginForm("Search", "Store", FormMethod.Post))
+                {
+                    <div class="col-lg-4">
+                        <div class="input-group">
+                            @Html.TextBox("search", "" , new { @class = "nk-form" })
+                            
+                            <button class="nk-btn nk-btn-rounded nk-btn-color-main-1">Search</button>
+                        </div>
+                    </div>
+                 }
+            </div>
+            <!-- END: Products Filter -->
+
+            <div class="nk-gap-2"></div>
+            <!-- START: Products -->
+            <div class="row vertical-gap">
+                @{ 
+                    WebMarketingEntities db = new WebMarketingEntities();
+                }
+                @foreach (var games in Model)
+                {
+
+                    string temp = "~/Content/img/" + games.ID + ".jpg";
+                    string imagePath = Url.Content(temp);
+
+                    temp = "/Store/StoreProduct/" + games.ID;
+                    string hrefPath = Url.Content(temp);
+                    temp = "/Store/AddCart/" + games.ID;
+                    string hrefPath2 = Url.Content(temp);
+
+                            <div class="col-lg-6">
+                        <div class="nk-product-cat-2">
+                            <a class="nk-product-image" href="@hrefPath">
+                                <img style="height:275px;max-width:200px;width: expression(this.width > 500 ? 500: true);" id="img_DocPreview" src="@imagePath" />
+                                @*<img src="@imagePath" alt="So saying he unbuckled">*@
+                            </a>
+                            <div class="nk-product-cont">
+                                <h3 class="nk-product-title h5"><a href="@hrefPath">@games.Name</a></h3>
+                                <div class="nk-gap-1"></div>
+                                <div class="nk-product-rating"> <i class="fas fa-star fa-spin fa-1x"></i>  <strong>@games.Vote</strong></div>
+                                <div class="nk-gap-1"> </div>
+                                <div> Platform : @db.Platforms.Find(db.Operates_On.Find(games.ID).Platform_id).Pname</div>
+                                <div class="nk-gap-1"></div>
+                                <div> Genre : @games.Genre</div>
+                                <div class="nk-gap-2"></div>
+                                <div class="nk-product-price">@games.Price ₺</div>
+                                <div class="nk-gap-1"></div>
+                                <a href="@hrefPath2" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Add to Cart</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+            <!-- END: Products -->
+            
+        </div>
+
+        <div class="nk-gap-2"></div>
+
+
+    </div>
+
+    <!-- START: Page Background -->
+
+    <img class="nk-page-background-top" src="~/Content/images/bg-top-4.png" alt="">
+    <img class="nk-page-background-bottom" src="~/Content/images/bg-bottom.png" alt="">
+
+
+
+</body>
+</html>
+
+

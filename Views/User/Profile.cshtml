@@ -1,0 +1,159 @@
+﻿@using WebGameMarketing.Models.EntitiyFramwork
+@model  Tuple<List<Games>, List<Games>, Users>
+
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+
+<html lang="en">
+
+
+<body>
+
+
+
+    <div class="nk-main">
+
+        <!-- START: Breadcrumbs -->
+        <div class="nk-gap-1"></div>
+        <div class="container">
+            <ul class="nk-breadcrumbs">
+
+
+                <li><a href="/Home/Home">Home</a></li>
+
+
+                <li><span class="fa fa-angle-right"></span></li>
+
+                <li><span">Profile Page</a></li>
+
+                <li><span class="fa fa-angle-right"></span></li>
+
+                <li><span>Library</span></li>
+
+                <li><span class="fa fa-angle-right"></span></li>
+
+                <li><span><span class="text-main-1">Welcome</span> @Model.Item3.UserName!</span></li>
+
+
+            </ul>
+        </div>
+        <div class="nk-gap-1"></div>
+        <!-- END: Breadcrumbs -->
+
+
+
+
+        <div class="container">
+
+
+            <div class="nk-gap-2"></div>
+            <div class="row vertical-gap">
+                <div class="col-lg-8">
+                    <!-- START: Products -->
+                    <div class="row vertical-gap">
+
+                        @foreach (Games games in Model.Item2)
+                        {
+
+                            string temp = "~/Content/img/" + games.ID + ".jpg";
+                            string imagePath = Url.Content(temp);
+
+                            temp = "/Store/StoreProduct/" + games.ID;
+                            string hrefPath = Url.Content(temp);
+                            <div class="col-md-6">
+                                <div class="nk-product-cat">
+                                    <a class="nk-product-image" href="@hrefPath">
+                                        <img style="height:155px;max-width:200px;width: expression(this.width > 500 ? 500: true);" id="img_DocPreview" src="@imagePath" />
+                                    </a>
+                                    <div class="nk-product-cont">
+                                        <h3 class="nk-product-title h5"><a href="@hrefPath">@games.Name</a></h3>
+                                        <div class="nk-gap-1"></div>
+                                        <div class="nk-product-rating"> <i class="fas fa-star fa-spin fa-1x"></i>  <strong>@games.Vote</strong></div>
+                                        <div class="nk-gap-1"></div>
+                                        <div class="nk-product-price">Genre: @games.Genre</div>
+                                        <div class="nk-gap-1"></div>
+                                        <a href="#" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Download</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+
+                    </div>
+                    <!-- END: Products -->
+
+
+                </div>
+                <div class="col-lg-4">
+                 
+                    <aside class="nk-sidebar nk-sidebar-right nk-sidebar-sticky">
+                        <div class="nk-widget">
+
+                        </div>
+
+
+                        <div class="nk-widget nk-widget-highlighted">
+                            <h4 class="nk-widget-title"><span><span class="text-main-1">Latest</span> Video</span></h4>
+                            <div class="nk-widget-content">
+                                <div class="nk-plain-video" data-video="https://www.youtube.com/watch?v=QkkoHAzjnUs"></div>
+                            </div>
+                        </div>
+                        <div class="nk-widget nk-widget-highlighted">
+                            <h4 class="nk-widget-title"><span><span class="text-main-1">Newly Released For You</span> @Model.Item3.UserName</span></h4>
+                            <div class="nk-widget-content">
+                               @foreach(Games games in Model.Item1.Take(3))
+                               {
+                                   string temp = "~/Content/img/" + games.ID + ".jpg";
+                                   string imagePath = Url.Content(temp);
+
+                                   temp = "/Store/StoreProduct/" + games.ID;
+                                   string hrefPath = Url.Content(temp);
+                                   <div class="nk-widget-post">
+                                    <a href="@hrefPath" class="nk-post-image">
+                                        <img src="@imagePath" alt="So saying he unbuckled">
+                                    </a>
+                                    <h3 class="nk-post-title"><a href="@hrefPath">@games.Name</a></h3>
+                                    <div class="nk-product-rating"> <i class="fas fa-star fa-spin fa-1x"></i>  <strong>@games.Vote</strong></div>
+                                    
+                                    <div class="nk-product-price">@games.Price TL</div>
+                                </div>
+                               }
+
+
+
+                            </div>
+                        </div>
+
+
+                    </aside>
+                    <!-- END: Sidebar -->
+                </div>
+            </div>
+        </div>
+
+        <div class="nk-gap-2"></div>
+
+
+
+
+    </div>
+
+
+
+
+    <!-- START: Page Background -->
+
+    <img class="nk-page-background-top" src="assets/images/bg-top-4.png" alt="">
+    <img class="nk-page-background-bottom" src="assets/images/bg-bottom.png" alt="">
+
+
+
+</body>
+</html>
+
+

@@ -1,0 +1,218 @@
+﻿@using WebGameMarketing.Models.EntitiyFramwork
+@using WebGameMarketing.Controllers;
+
+@model Tuple<Games, List<Games>, List<Review>, string>
+
+@{
+    ViewBag.Title = "StoreProduct";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+
+}
+
+
+
+<!DOCTYPE html>
+
+
+<html lang="en">
+
+<body>
+
+    <div class="nk-main">
+
+        <!-- START: Breadcrumbs -->
+        <div class="nk-gap-1"></div>
+        <div class="container">
+            <ul class="nk-breadcrumbs">
+
+
+                <li><a href="index.html">Home</a></li>
+
+
+                <li><span class="fa fa-angle-right"></span></li>
+
+                <li><a href="store.html">Store</a></li>
+
+
+                <li><span class="fa fa-angle-right"></span></li>
+
+                <li><span>@Model.Item1.Name </span></li>
+
+            </ul>
+        </div>
+        <div class="nk-gap-1"></div>
+        <!-- END: Breadcrumbs -->
+
+
+
+
+        <div class="container">
+            <div class="row vertical-gap">
+                <div class="col-lg-8">
+                    <div class="nk-store-product">
+                        <div class="row vertical-gap">
+                            <div class="col-md-6">
+                                <!-- START: Product Photos -->
+                                @{
+                                    string temp = "~/Content/img/" + Model.Item1.ID + ".jpg";
+                                    string imagePath = Url.Content(temp);
+                                    temp = "/Store/AddCart/" + Model.Item1.ID;
+                                    string hrefPath2 = Url.Content(temp);
+                                }
+                                <div class="nk-popup-gallery">
+                                    <div class="nk-gallery-item-box">
+                                        <a href="@imagePath" class="nk-gallery-item" data-size="1200x554">
+                                            <div class="nk-gallery-item-overlay"><span class="ion-eye"></span></div>
+                                            <img src="@imagePath" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                                <!-- END: Product Photos -->
+                            </div>
+                            <div class="col-md-6">
+
+                                <h2 class="nk-product-title h3">@Model.Item1.Name </h2>
+
+                                <div class="nk-product-description">
+                                    <p>@Model.Item1.Description</p>
+                                </div>
+
+                                <!-- START: Add to Cart -->
+                                <div class="nk-gap-2"></div>
+                                <form action="@hrefPath2" class="nk-product-addtocart">
+                                    <div class="nk-product-price">@Model.Item1.Price TL</div>
+                                    <div class="nk-gap-1"></div>
+                                    <div class="input-group">
+                                        <button class="nk-btn nk-btn-rounded nk-btn-color-main-1">Add to Cart</button>
+                                    </div>
+                                </form>
+                                <div class="nk-gap-3"></div>
+                                <!-- END: Add to Cart -->
+                                <!-- START: Meta -->
+                                <div class="nk-product-meta">
+                                    <div><strong>Release Date</strong>: @Model.Item1.Release_date</div>
+                                    <div><strong>Genre</strong>: @Model.Item1.Genre<a></a><a></a><a></a> <a></a></div>
+                                    <div><strong>Publisher</strong>:  @Model.Item4<a></a><a></a><a></a></div>
+                                </div>
+                                <!-- END: Meta -->
+                            </div>
+                        </div>
+
+
+                        <div class="nk-gap-2"></div>
+                        <!-- START: Tabs -->
+                        <!-- START: Tab Reviews -->
+
+                        <div class="nk-gap-2"></div>
+                        <!-- START: Reply -->
+
+
+
+
+                        @if (GlobalVariables.ActiveUser != null)
+                        {
+                            <h3 class="h4">Add a Review</h3>
+                            
+                            
+                            using (Html.BeginForm("AddComment", "Store", FormMethod.Post))
+                            {
+                                <div >@ViewBag.Mesaj</div>
+                                <div class="nk-reply">
+                                    <div class="nk-gap-1"></div>
+
+                                    <input type="text" class="form-control required" name="Comment" id="Comment" style="height: 100px" placeholder="Your Review *" aria-required="true"></input>
+                                    <div class="nk-gap-1"></div>
+                                    <input type="number" class="form-control required" name="Vote" id="Vote" min="1" max="10" placeholder="1-10" style="width: 80px">
+                                    @Html.Hidden("Game_id", Model.Item1.ID)
+                                    <input type="submit" value="Submit" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 float-right"> <br> <br>
+                                </div>
+                            }
+                        }
+
+                     
+
+                        <div class="clearfix"></div>
+                        <div class="nk-gap-2"></div>
+                        <div class="nk-comments">
+                            <!-- START: Review -->
+                            @{
+                                WebMarketingEntities db = new WebMarketingEntities();
+                                foreach (Review item in Model.Item3)
+                                {
+
+                                    Users user = db.Users.Find(item.Users_id);
+                                    <div class="nk-comment">
+                                        <div class="nk-comment-meta">
+                                            <img src="~/Content/images/avatar-1.jpg" alt="Witch Murder" class="rounded-circle" width="35"> by <a>@user.UserName</a>
+                                            <div class="nk-product-rating"> <i class="fas fa-star fa-spin fa-1x"></i>  <strong>@item.Vote</strong></div>
+                                        </div>
+                                        <div class="nk-comment-text">
+                                            <p>@item.Comment</p>
+
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        </div>
+                        <!-- END: Tabs -->
+                    </div>
+
+                </div>
+                <div class="col-lg-4">
+
+                    <aside class="nk-sidebar nk-sidebar-right nk-sidebar-sticky">
+
+
+                        <div class="nk-widget nk-widget-highlighted">
+                            <h4 class="nk-widget-title"><span><span class="text-main-1">Related</span> Games</span></h4>
+                            <div class="nk-widget-content">
+
+                                @foreach (var games in Model.Item2.Take(4))
+                                {
+                                    temp = "~/Content/img/" + games.ID + ".jpg";
+                                    imagePath = Url.Content(temp);
+
+                                    temp = "/Store/StoreProduct/" + games.ID;
+                                    string hrefPath = Url.Content(temp);
+                                    <div class="nk-widget-post">
+                                        <a href="@hrefPath" class="nk-post-image">
+                                            <img src="@imagePath" alt="So saying he unbuckled">
+                                        </a>
+                                        <h3 class="nk-post-title"><a href="@hrefPath">@games.Name</a></h3>
+                                        <div class="nk-product-rating"> <i class="fas fa-star fa-spin fa-1x"></i>  <strong>@games.Vote</strong></div>
+                                        <div class="nk-product-price">@games.Price  TL</div>
+                                    </div>
+                                }
+
+
+                            </div>
+                        </div>
+
+
+                    </aside>
+                    <!-- END: Sidebar -->
+                </div>
+            </div>
+        </div>
+        <div class="nk-gap-2"></div>
+
+
+
+
+
+    </div>
+
+    <!-- START: Page Background -->
+
+    <img class="nk-page-background-top" src="~/Content/images/bg-top-4.png" alt="">
+    <img class="nk-page-background-bottom" src="~/Content/images/bg-bottom.png" alt="">
+
+    <!-- END: Page Background -->
+    <!-- START: Search Modal -->
+
+</body>
+</html>
+
+

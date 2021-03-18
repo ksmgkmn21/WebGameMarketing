@@ -1,0 +1,133 @@
+﻿@using WebGameMarketing.Controllers;
+
+
+<header class="nk-header nk-header-opaque">
+
+
+    <!-- START: Logout -->
+    @{
+
+        if (GlobalVariables.ActiveUser != null)
+        {
+            <div class="nk-contacts-top">
+                <div class="container">
+
+                    <div class="nk-contacts-right">
+                        <ul class="nk-contacts-icons">
+
+                            <li>
+                                <a href="/User/Logout">
+                                    <span class="fa fa-user"></span>
+                                    |@GlobalVariables.ActiveUser.UserName - Logout
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="nk-contacts-top">
+                <div class="container">
+
+                    <div class="nk-contacts-right">
+                        <ul class="nk-contacts-icons">
+
+                            <li>
+                                <a href="/User/Logout">
+                                    <span class="fa fa-user"></span>
+                                    | - Login
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+
+    <!-- END: Logout -->
+    <!-- START: Top Contacts -->
+    <div class="nk-contacts-top">
+        <div class="container">
+
+        </div>
+    </div>
+
+    <nav class="nk-navbar nk-navbar-top nk-navbar-sticky nk-navbar-autohide">
+        <div class="container">
+            <div class="nk-nav-table">
+
+                <a href="/Home/Home" class="nk-nav-logo">
+                    <img src="~/Content/img/mylogo.png" alt="GoodGames" width="199">
+                </a>
+
+                <ul class="nk-nav nk-nav-right d-none d-lg-table-cell" data-nav-mobile="#nk-nav-mobile">
+
+
+                    <li>
+                        @if (GlobalVariables.ActiveUser == null)
+                        {
+                            <a href="/User/Profile">
+                                <span class="fa fa-user"></span>
+                                Profile Page
+
+                            </a>
+                        }
+                        else
+                        {
+                            <a href="/User/Profile">
+                                <span class="active fa fa-user"></span>
+                                @GlobalVariables.ActiveUser.UserName
+
+                            </a>
+                        }
+                    </li>
+
+                    <li>
+                        <a href="/Gallery/Gallery">
+                            Gallery
+
+                        </a>
+                    </li>
+                    <li class="nk-drop-item">
+                        <a href="/Store/Store">
+                            Store
+
+                        </a><ul class="dropdown">
+
+                            <li>
+                                <a href="/Store/Store">
+                                    Store
+
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="/Store/StoreCatalog">
+                                    Catalog
+
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/Store/StoreCart">
+                                    Cart
+
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+    <!-- END: Navbar -->
+
+</header>
+
+

@@ -1,0 +1,118 @@
+﻿@using WebGameMarketing.Models.EntitiyFramwork
+@model List<Users>
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<!DOCTYPE html>
+
+
+<html lang="en">
+
+
+<body>
+
+
+
+    <div class="nk-main">
+
+        <!-- START: Breadcrumbs -->
+        <div class="nk-gap-1"></div>
+        <div class="container">
+            <ul class="nk-breadcrumbs">
+
+
+                <li><a href="/Home/Home">Home</a></li>
+
+                <li><span class="fa fa-angle-right"></span></li>
+
+                <li><span>Login</span></li>
+
+            </ul>
+        </div>
+        <div class="nk-gap-1"></div>
+        <!-- END: Breadcrumbs -->
+
+
+
+
+        <div class="container">
+
+            <div class="nk-store nk-store-checkout">
+                <h3 class="nk-decorated-h-2"><span><span class="text-main-1">Sign</span> In</span></h3>
+
+                <!-- START: Billing Details -->
+                <div class="nk-gap"></div>
+
+
+                <div class="col-lg-8"></div>
+
+
+                <div class="nk-gap-1"></div>
+                @ViewBag.Mesaj
+                @using (Html.BeginForm("Login", "User", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="row vertical-gap">
+                        <div class="col-md-6">
+                            Use username and password:
+
+                            <div class="nk-gap"></div>
+                            <input type="text" value="" name="UserName" class=" form-control" placeholder="Username">
+
+                            <div class="nk-gap"></div>
+                            <input type="password" value="" name="Password" class="required form-control" placeholder="Password">
+                            <div class="nk-gap"></div>
+                            <input type="submit" value="Sign In" class="nk-btn nk-btn-rounded nk-btn-color-white nk-btn-block"> <br> <br>
+                        </div>
+                        <div class="col-md-6">
+
+                        </div>
+                    </div>
+
+                    <div class="nk-gap-1"></div>
+
+                }
+                <div class="row vertical-gap">
+                    <div class="col-md-6">
+
+                    </div>
+                    <div class="col-md-6">
+
+                        <div class="mnt-5">
+                            <small><a href="/Register/Register">Not a member? Sign up</a></small>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- END: Billing Details -->
+
+
+
+            <div class="nk-gap-2"></div>
+
+
+
+
+
+        </div>
+
+
+
+
+        <!-- START: Page Background -->
+
+        <img class="nk-page-background-top" src="assets/images/bg-top-4.png" alt="">
+
+
+
+
+</body>
+</html>
+
+

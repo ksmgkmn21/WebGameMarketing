@@ -1,0 +1,297 @@
+﻿@using WebGameMarketing.Models.EntitiyFramwork
+@model Tuple<List<Img_Path>, List<Games>>
+@{
+    ViewBag.Title = "Gallery";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+
+<html lang="en">
+
+<body>
+
+
+
+    <div class="nk-main">
+
+        <!-- START: Breadcrumbs -->
+        <div class="nk-gap-1"></div>
+        <div class="container">
+            <ul class="nk-breadcrumbs">
+
+
+                <li><a href="/Home/Home">Home</a></li>
+
+
+                <li><span class="fa fa-angle-right"></span></li>
+
+                <li><span>Gallery</span></li>
+
+            </ul>
+        </div>
+        <div class="nk-gap-1"></div>
+        <!-- END: Breadcrumbs -->
+
+
+
+
+        <div class="container">
+            <div class="row vertical-gap">
+                <div class="col-lg-8">
+                    <!-- START: Latest Pictures -->
+                    <h2 class="nk-decorated-h-2 h3"><span><span class="text-main-1">Latest</span> Pictures</span></h2>
+                    <div class="nk-gap"></div>
+                    <div class="nk-popup-gallery">
+                        <div class="row vertical-gap">
+                            <div class="col-lg-4 col-md-6">
+                                <div class="nk-gallery-item-box">
+                                    <a href="~/Content/images/gallery-1.jpg" class="nk-gallery-item" data-size="1016x572">
+                                        <div class="nk-gallery-item-overlay"><span class="ion-eye"></span></div>
+                                        <img src="~/Content/images/gallery-1-thumb.jpg" alt="">
+                                    </a>
+                                    <div class="nk-gallery-item-description">
+                                        <h4>Called Let</h4>
+                                        Divided thing, land it evening earth winged whose great after. Were grass night. To Air itself saw bring fly fowl. Fly years behold spirit day greater of wherein winged and form. Seed open don't thing midst created dry every greater divided of, be man is. Second Bring stars fourth gathering he hath face morning fill. Living so second darkness. Moveth were male. May creepeth. Be tree fourth.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <div class="nk-gallery-item-box">
+                                    <a href="~/Content/images/gallery-2.jpg" class="nk-gallery-item" data-size="1188x594">
+                                        <div class="nk-gallery-item-overlay"><span class="ion-eye"></span></div>
+                                        <img src="~/Content/images/gallery-2-thumb.jpg" alt="">
+                                    </a>
+                                    <div class="nk-gallery-item-description">
+                                        Seed open don't thing midst created dry every greater divided of, be man is. Second Bring stars fourth gathering he hath face morning fill. Living so second darkness. Moveth were male. May creepeth. Be tree fourth.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <div class="nk-gallery-item-box">
+                                    <a href="~/Content/images/gallery-3.jpg" class="nk-gallery-item" data-size="625x350">
+                                        <div class="nk-gallery-item-overlay"><span class="ion-eye"></span></div>
+                                        <img src="~/Content/images/gallery-3-thumb.jpg" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <div class="nk-gallery-item-box">
+                                    <a href="~/Content/images/gallery-4.jpg" class="nk-gallery-item" data-size="873x567">
+                                        <div class="nk-gallery-item-overlay"><span class="ion-eye"></span></div>
+                                        <img src="~/Content/images/gallery-4-thumb.jpg" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <div class="nk-gallery-item-box">
+                                    <a href="~/Content/images/gallery-5.jpg" class="nk-gallery-item" data-size="471x269">
+                                        <div class="nk-gallery-item-overlay"><span class="ion-eye"></span></div>
+                                        <img src="~/Content/images/gallery-5-thumb.jpg" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <div class="nk-gallery-item-box">
+                                    <a href="~/Content/images/gallery-6.jpg" class="nk-gallery-item" data-size="472x438">
+                                        <div class="nk-gallery-item-overlay"><span class="ion-eye"></span></div>
+                                        <img src="~/Content/images/gallery-6-thumb.jpg" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <div class="nk-gallery-item-box">
+                                    <a href="~/Content/images/gallery-7.jpg" class="nk-gallery-item" data-size="960x540">
+                                        <div class="nk-gallery-item-overlay"><span class="ion-eye"></span></div>
+                                        <img src="~/Content/images/gallery-7-thumb.jpg" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <div class="nk-gallery-item-box">
+                                    <a href="~/Content/images/gallery-8.jpg" class="nk-gallery-item" data-size="473x390">
+                                        <div class="nk-gallery-item-overlay"><span class="ion-eye"></span></div>
+                                        <img src="~/Content/images/gallery-8-thumb.jpg" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <div class="nk-gallery-item-box">
+                                    <a href="~/Content/images/gallery-9.jpg" class="nk-gallery-item" data-size="750x486">
+                                        <div class="nk-gallery-item-overlay"><span class="ion-eye"></span></div>
+                                        <img src="~/Content/images/gallery-9-thumb.jpg" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <div class="nk-gallery-item-box">
+                                    <a href="~/Content/images/gallery-10.jpg" class="nk-gallery-item" data-size="960x557">
+                                        <div class="nk-gallery-item-overlay"><span class="ion-eye"></span></div>
+                                        <img src="~/Content/images/gallery-10-thumb.jpg" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <div class="nk-gallery-item-box">
+                                    <a href="~/Content/images/gallery-11.jpg" class="nk-gallery-item" data-size="600x362">
+                                        <div class="nk-gallery-item-overlay"><span class="ion-eye"></span></div>
+                                        <img src="~/Content/images/gallery-11-thumb.jpg" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <div class="nk-gallery-item-box">
+                                    <a href="~/Content/images/gallery-12.jpg" class="nk-gallery-item" data-size="1200x670">
+                                        <div class="nk-gallery-item-overlay"><span class="ion-eye"></span></div>
+                                        <img src="~/Content/images/gallery-12-thumb.jpg" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END: Latest Pictures -->
+                    <!-- START: Video Galleries-->
+                    <div class="nk-gap-2"></div>
+                    <h2 class="nk-decorated-h-2 h3"><span><span class="text-main-1">Video</span> Galleries</span></h2>
+                    <div class="nk-gap"></div>
+                    <div class="row vertical-gap">
+                        @{ 
+                            WebMarketingEntities db = new WebMarketingEntities();
+                        }
+                        @foreach(Img_Path item in Model.Item1)
+                        {
+                            string temp = "/Store/StoreProduct/" + item.Game_id;
+                            string hrefPath = Url.Content(temp);
+                        <div class="col-md-6">
+                            <h4 class="nk-product-title h5"><a href="@hrefPath">@db.Games.Find(item.Game_id).Name</a></h4>
+                            <div class="nk-gap"></div>
+                            <div class="nk-plain-video" data-video="@item.Path" ></div>
+                        </div>
+                        }
+
+                    </div>
+                    
+                </div>
+                <div class="col-lg-4">
+                  
+                    <aside class="nk-sidebar nk-sidebar-right nk-sidebar-sticky">
+                        <div class="nk-widget">
+                            <div class="nk-widget-content">
+                                
+                            </div>
+                        </div>
+
+                        <div class="nk-widget nk-widget-highlighted">
+                            <h4 class="nk-widget-title"><span><span class="text-main-1">Latest</span> Video</span></h4>
+                            <div class="nk-widget-content">
+                                <div class="nk-plain-video" data-video="@db.Img_Path.Find(Model.Item2[0].ID).Path"></div>
+                            </div>
+                        </div>
+                        <div class="nk-widget nk-widget-highlighted">
+                            <h4 class="nk-widget-title"><span><span class="text-main-1">Latest Games</span></span></h4>
+                            <div class="nk-widget-content">
+                                @foreach (Games item in Model.Item2.Take(3))
+                                {
+
+                                    string temp = "~/Content/img/" + item.ID + ".jpg";
+                                    string imagePath = Url.Content(temp);
+                                    temp = "/Store/StoreProduct/" + item.ID;
+                                    string hrefPath = Url.Content(temp);
+                                   <div class="nk-widget-post">
+                                    <a href="@hrefPath" class="nk-post-image">
+                                        <img style="height:100px;max-width:90px;width: expression(this.width > 500 ? 500: true);" id="img_DocPreview" src="@imagePath" />
+                                    </a>
+                                    <h3 class="nk-post-title"><a href="@hrefPath">@item.Name</a></h3>
+                                    <div class="nk-post-date"><span class="fa fa-calendar"></span>@item.Release_date</div>
+                                    </div>
+                                }
+                                
+                            </div>
+                        </div>
+                        <div class="nk-widget nk-widget-highlighted">
+                            <h4 class="nk-widget-title"><span><span class="text-main-1">Screenshots from</span> Community</span></h4>
+                            <div class="nk-widget-content">
+                                <div class="nk-popup-gallery">
+                                    <div class="row sm-gap vertical-gap">
+                                        <div class="col-sm-6">
+                                            <div class="nk-gallery-item-box">
+                                                <a href="~/Content/images/gallery-1.jpg" class="nk-gallery-item" data-size="1016x572">
+                                                    <div class="nk-gallery-item-overlay"><span class="ion-eye"></span></div>
+                                                    <img src="~/Content/images/gallery-1-thumb.jpg" alt="">
+                                                </a>
+                                                <div class="nk-gallery-item-description">
+                                                    <h4>Called Let</h4>
+                                                    Divided thing, land it evening earth winged whose great after. Were grass night. To Air itself saw bring fly fowl. Fly years behold spirit day greater of wherein winged and form. Seed open don't thing midst created dry every greater divided of, be man is. Second Bring stars fourth gathering he hath face morning fill. Living so second darkness. Moveth were male. May creepeth. Be tree fourth.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="nk-gallery-item-box">
+                                                <a href="~/Content/images/gallery-2.jpg" class="nk-gallery-item" data-size="1188x594">
+                                                    <div class="nk-gallery-item-overlay"><span class="ion-eye"></span></div>
+                                                    <img src="~/Content/images/gallery-2-thumb.jpg" alt="">
+                                                </a>
+                                                <div class="nk-gallery-item-description">
+                                                    Seed open don't thing midst created dry every greater divided of, be man is. Second Bring stars fourth gathering he hath face morning fill. Living so second darkness. Moveth were male. May creepeth. Be tree fourth.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="nk-gallery-item-box">
+                                                <a href="~/Content/images/gallery-3.jpg" class="nk-gallery-item" data-size="625x350">
+                                                    <div class="nk-gallery-item-overlay"><span class="ion-eye"></span></div>
+                                                    <img src="~/Content/images/gallery-3-thumb.jpg" alt="">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="nk-gallery-item-box">
+                                                <a href="~/Content/images/gallery-4.jpg" class="nk-gallery-item" data-size="873x567">
+                                                    <div class="nk-gallery-item-overlay"><span class="ion-eye"></span></div>
+                                                    <img src="~/Content/images/gallery-4-thumb.jpg" alt="">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="nk-gallery-item-box">
+                                                <a href="~/Content/images/gallery-5.jpg" class="nk-gallery-item" data-size="471x269">
+                                                    <div class="nk-gallery-item-overlay"><span class="ion-eye"></span></div>
+                                                    <img src="~/Content/images/gallery-5-thumb.jpg" alt="">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="nk-gallery-item-box">
+                                                <a href="~/Content/images/gallery-6.jpg" class="nk-gallery-item" data-size="472x438">
+                                                    <div class="nk-gallery-item-overlay"><span class="ion-eye"></span></div>
+                                                    <img src="~/Content/images/gallery-6-thumb.jpg" alt="">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </aside>
+                    <!-- END: Sidebar -->
+                </div>
+            </div>
+        </div>
+
+        <div class="nk-gap-2"></div>
+
+
+
+
+
+    </div>
+
+
+</body>
+</html>
+
+

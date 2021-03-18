@@ -1,0 +1,193 @@
+﻿@using WebGameMarketing.Models.EntitiyFramwork
+@model Tuple<List<Games>, List<Games>>
+@{
+    ViewBag.Title = "Store";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<body>
+
+
+    <div class="nk-main">
+
+        <!-- START: Breadcrumbs -->
+        <div class="nk-gap-1"></div>
+        <div class="container">
+            <ul class="nk-breadcrumbs">
+
+
+                <li><a href="/Home/Home">Home</a></li>
+
+
+                <li><span class="fa fa-angle-right"></span></li>
+
+                <li><span>Store</span></li>
+
+            </ul>
+        </div>
+        <div class="nk-gap-1"></div>
+        <!-- END: Breadcrumbs -->
+
+
+
+
+        <div class="container">
+
+
+            <!-- START: Some Products -->
+
+            <div class="nk-gap-2"></div>
+            <div class="row vertical-gap">
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="nk-gallery-item-box">
+                        <a href="/Store/StoreProduct/28" class="nk-gallery-item">
+                            <span class="nk-gallery-item-overlay"><span><span class="nk-icon-circles"></span></span></span>
+                            <img src="~/Content/img/28.jpg" alt="She was bouncing">
+                        </a>
+                        <div class="nk-gallery-item-label">
+                            <h4 class="mb-0">KINGDOM HEARTS</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 order-lg-3">
+                    <div class="nk-gallery-item-box">
+                        <a href="/Store/StoreProduct/46" class="nk-gallery-item">
+                            <span class="nk-gallery-item-overlay"><span><span class="nk-icon-circles"></span></span></span>
+                            <img src="~/Content/img/46.jpg" alt="However, I have reason">
+                        </a>
+                        <div class="nk-gallery-item-label">
+                            <h4 class="mb-0">FABLE III</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-4">
+                    <div class="row vertical-gap">
+                        <div class="col-md-6">
+                            <div class="nk-gallery-item-box">
+                                <a href="/Store/StoreProduct/32" class="nk-gallery-item">
+                                    <span class="nk-gallery-item-overlay"><span><span class="nk-icon-circles"></span></span></span>
+                                    <img src="~/Content/img/32.jpg" alt="It was some time before">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="nk-gallery-item-box">
+                                <a href="/Store/StoreProduct/33" class="nk-gallery-item">
+                                    <span class="nk-gallery-item-overlay"><span><span class="nk-icon-circles"></span></span></span>
+                                    <img src="~/Content/img/33.jpg" alt="So saying he unbuckled">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="nk-gallery-item-box">
+                                <a href="/Store/StoreProduct/23" class="nk-gallery-item">
+                                    <span class="nk-gallery-item-overlay"><span><span class="nk-icon-circles"></span></span></span>
+                                    <img src="~/Content/img/23.jpg" alt="In all revolutions of">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="nk-gallery-item-box">
+                                <a href="/Store/StoreProduct/26" class="nk-gallery-item">
+                                    <span class="nk-gallery-item-overlay"><span><span class="nk-icon-circles"></span></span></span>
+                                    <img src="~/Content/img/26.jpg" alt="Just then her head ">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END: Some Products -->
+            <!-- START: Best Sellers -->
+            <div class="nk-gap-3"></div>
+            <h3 class="nk-decorated-h-2"><span><span class="text-main-1">Best</span> Sellers</span></h3>
+            <div class="nk-gap"></div>
+            <div class="nk-carousel nk-carousel-x4" data-autoplay="3000" data-dots="true" data-cell-align="left" data-arrows="false">
+                <div class="nk-carousel-inner">
+
+                    <!-- item2 is best list -->
+                    @foreach (var games in Model.Item2.Take(10))
+                    {
+                        string temp = "~/Content/img/" + games.ID + ".jpg";
+                        string imagePath = Url.Content(temp);
+
+                        temp = "/Store/StoreProduct/" + games.ID;
+                        string hrefPath = Url.Content(temp);
+                        <div>
+                            <div class="pl-5 pr-5">
+                                <div class="nk-product-cat-3">
+                                    <a class="nk-product-image" href="@hrefPath">
+                                        <img style="height:175px;max-width:200px;width: expression(this.width > 500 ? 500: true);" id="img_DocPreview" src="@imagePath" />
+                                    </a>
+                                    <div class="nk-product-cont">
+                                        <div class="nk-gap-1"></div>
+                                        <h3 class="nk-product-title h5"><a href="@hrefPath">@games.Name</a></h3>
+                                        <div class="nk-gap-1"></div>
+                                        <div class="nk-product-price">@games.Price ₺</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+
+                </div>
+            </div>
+            <!-- END: Top 10 Best Sellers -->
+            <!-- START: Most Popular -->
+            <div class="nk-gap-3"></div>
+            <h3 class="nk-decorated-h-2"><span><span class="text-main-1">Most</span> Popular</span></h3>
+            <div class="nk-gap"></div>
+            <div class="row vertical-gap">
+
+                @foreach (var games in Model.Item1.Take(6))
+                {
+                    string temp = "~/Content/img/" + games.ID + ".jpg";
+                    string imagePath = Url.Content(temp);
+
+                    temp = "/Store/StoreProduct/" + games.ID;
+                    string hrefPath = Url.Content(temp);
+                    <div class="col-lg-4 col-md-6">
+                        <div class="nk-product-cat">
+                            <a class="nk-product-image" href="@hrefPath">
+                                <img style="height:175px;max-width:200px;width: expression(this.width > 500 ? 500: true);" id="img_DocPreview" src="@imagePath" />
+                                @*<img src="@imagePath" alt="She gave my mother">*@
+                            </a>
+                            <div class="nk-product-cont">
+                                <h3 class="nk-product-title h5"><a href="store-product.html">@games.Name</a></h3>
+                                <div class="nk-gap-1"></div>
+                                <div  class="nk-product-rating"> <i class="fas fa-star fa-spin fa-1x" ></i>  <strong>@games.Vote</strong></div>
+                                <div class="nk-gap-1"></div>
+                                <div class="nk-product-price">@games.Price ₺</div>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+
+            </div>
+        </div>
+
+        <div class="nk-gap-2"></div>
+
+
+    </div>
+
+
+    <img class="nk-page-background-top" src="~/Content/images/bg-top-4.png" alt="">
+    <img class="nk-page-background-bottom" src="~/Content/images/bg-bottom.png" alt="">
+
+  
+    
+
+</body>
+</html>
+
+
